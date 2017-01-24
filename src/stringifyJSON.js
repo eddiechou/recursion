@@ -23,11 +23,9 @@ var stringifyJSON = function(obj) {
 
   		case 'number':
   			return '' + obj;
-  			break;
 
   		case 'function':
   			return 'function';
-  			break;
 
   		case 'object':
   			if (obj === null) {
@@ -59,15 +57,12 @@ var stringifyJSON = function(obj) {
   				result += '}';
   				return result;
   			}
-  			break;
 
   		case 'string':
   			return '"' + obj + '"';
-  			break;
 
   		case 'undefined':
   			return 'undefined';
-  			break;
   	}
   }
 };
