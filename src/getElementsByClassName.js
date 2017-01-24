@@ -8,22 +8,28 @@
 // Use document.body, element.childNodes, and element.classList
 // .classList returns class names of an element
 var getElementsByClassName = function(className) {
-  // your code here
-  var result = [];
-  var element = document.body;
+	var result = [];
+	checkNode(document.body);
 
-  // Search classList for matches
-  if(element.hasChildNodes){
-  	var children = element.children;
-  	console.log(children);
-  	for (let i = 0; i < children.length; i++) {
-  		if (children[i] === undefined) continue;
-		if (children[i].classList.contains(className)) {
-			result.push(element[i]);
+	function checkNode(node) {
+
+		// Check if the node has the className in its classList
+		var classList = node.classList;
+		for (var iter in classList) {
+			if (classList[iter] === className) {
+				result.push(node);
+				break;	// Don't want to push duplicates
+			}
 		}
-  	}
-  }
 
+		// Recursively call checkNode for all the node's children
+		if (node.hasChildNodes()) {
+			var children = node.childNodes;
+			for (let i = 0; i < children.length; i++) {
+				checkNode(children[i]);
+			}
+		}
+	}
 
-  return result;
+	return result;
 };
